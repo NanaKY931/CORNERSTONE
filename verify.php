@@ -120,6 +120,8 @@ if (is_post()) {
     }
 }
 ?>
+
+<!-- HTML -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
