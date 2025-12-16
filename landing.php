@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cornerstone Inventory Tracker - Multi-site construction materials inventory management system">
+    <title>Cornerstone Inventory Tracker - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="landing-page">
+    
+    <!-- Navigation -->
+    <nav class="landing-nav">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <rect x="2" y="2" width="28" height="28" rx="4" fill="currentColor" opacity="0.2"/>
+                        <path d="M16 8L8 14V24H12V18H20V24H24V14L16 8Z" fill="currentColor"/>
+                    </svg>
+                    <span>Cornerstone</span>
+                </div>
+                <a href="index.php" class="btn btn-primary">Login</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Construction Inventory<br>
+                    <span class="gradient-text">Simplified</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Track materials across multiple building sites in real-time. 
+                    Reduce waste, prevent delays, and maximize profitability.
+                </p>
+                <div class="hero-cta">
+                    <a href="signup.php" class="btn btn-large btn-primary">
+                        Get Started Free
+                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                            <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </a>
+                    <a href="index.php" class="btn btn-large btn-secondary" style="margin-left: 1rem;">
+                        Sign In
+                    </a>
+                </div>
+                
+                <!-- Quick Stats -->
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">25%</div>
+                        <div class="stat-label">Waste Reduction</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">8hrs</div>
+                        <div class="stat-label">Time Saved/Week</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">$60K</div>
+                        <div class="stat-label">Annual Savings</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Everything You Need to Manage Materials</h2>
+            <p class="section-subtitle">Built for construction professionals who demand accuracy and efficiency</p>
+            
+            <div class="features-grid">
+                <!-- Feature 1 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect x="5" y="8" width="30" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M12 16H28M12 22H22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Multi-Site Tracking</h3>
+                    <p>Monitor inventory across all your construction sites from a single dashboard. See real-time stock levels and site status at a glance.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width="2"/>
+                            <path d="M20 12V20L26 23" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Real-Time Updates</h3>
+                    <p>Foremen update inventory instantly from the field. No more waiting for end-of-day reports or manual spreadsheets.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M8 28L16 20L22 26L32 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <circle cx="16" cy="20" r="2" fill="currentColor"/>
+                            <circle cx="22" cy="26" r="2" fill="currentColor"/>
+                        </svg>
+                    </div>
+                    <h3>Predictive Alerts</h3>
+                    <p>Get notified before you run out. Smart algorithms analyze usage patterns and warn you days in advance.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <rect x="8" y="8" width="24" height="24" rx="2" stroke="currentColor" stroke-width="2"/>
+                            <path d="M16 18L18 20L24 14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Waste Reporting</h3>
+                    <p>Track material variance and identify shrinkage. Detailed audit trails help you spot inefficiencies and reduce losses.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M12 20L18 14L22 18L28 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M12 28H28" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Cost Tracking</h3>
+                    <p>Calculate total material costs per site or project. Export detailed reports for accounting and investor presentations.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <path d="M20 8L8 16V28H14V22H26V28H32V16L20 8Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Site Transfers</h3>
+                    <p>Move materials between sites with full audit trails. Maximize utilization and avoid unnecessary purchases.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Use Case Section -->
+    <section class="use-case">
+        <div class="container">
+            <div class="use-case-content">
+                <div class="use-case-text">
+                    <h2>Real Results from Real Projects</h2>
+                    <p class="highlight-text">
+                        Cornerstone Development Group manages 3 concurrent residential projects across Phoenix. 
+                        Before implementing our system, they faced:
+                    </p>
+                    <ul class="problem-list">
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="8" stroke="#ef4444" stroke-width="2"/>
+                                <path d="M7 10L9 12L13 8" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span><strong>$127K in cost overruns</strong> from duplicate orders and excess materials</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="8" stroke="#ef4444" stroke-width="2"/>
+                                <path d="M7 10L9 12L13 8" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span><strong>15% material shrinkage</strong> with no way to track losses</span>
+                        </li>
+                        <li>
+                            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                                <circle cx="10" cy="10" r="8" stroke="#ef4444" stroke-width="2"/>
+                                <path d="M7 10L9 12L13 8" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+                            </svg>
+                            <span><strong>2-week project delays</strong> from stockouts and poor coordination</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="result-box">
+                        <h3>After Implementation:</h3>
+                        <div class="result-stats">
+                            <div class="result-stat">
+                                <span class="result-number">$60K</span>
+                                <span class="result-label">Annual Savings</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="result-number">60%</span>
+                                <span class="result-label">Shrinkage Reduction</span>
+                            </div>
+                            <div class="result-stat">
+                                <span class="result-number">8hrs</span>
+                                <span class="result-label">Saved Per Week</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Inventory Management?</h2>
+                <p>Join construction professionals who are saving time and money with smarter material tracking.</p>
+                <a href="signup.php" class="btn btn-large btn-white">
+                    Create Free Account
+                </a>
+                <p style="margin-top: 1rem; color: rgba(255,255,255,0.8); font-size: 0.875rem;">
+                    Already have an account? <a href="index.php" style="color: white; text-decoration: underline;">Sign In</a>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                        <rect x="2" y="2" width="28" height="28" rx="4" fill="currentColor" opacity="0.2"/>
+                        <path d="M16 8L8 14V24H12V18H20V24H24V14L16 8Z" fill="currentColor"/>
+                    </svg>
+                    <span>Cornerstone Inventory Tracker</span>
+                </div>
+                <p class="footer-text">
+                    &copy; 2025 Cornerstone Development Group. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

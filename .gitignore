@@ -1,0 +1,39 @@
+# IDE and Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+error_log
+access_log
+
+# Temporary files
+*.tmp
+*.temp
+*.cache
+
+# Environment-specific files
+.env
+.env.local
+
+# Database dumps
+*.sql.backup
+*.dump
+
+# User uploads (if any in future)
+uploads/
+temp/
+
+# Node modules (if using npm in future)
+node_modules/
+
+# Composer (if using in future)
+vendor/

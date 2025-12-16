@@ -1,0 +1,43 @@
+# Protect sensitive PHP files from direct access
+<FilesMatch "\.(php)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Allow access to entry point files only
+<FilesMatch "^(index|landing|signup|verify|dashboard|reports|inventory_admin|logout|delete_account)\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Prevent directory listing
+Options -Indexes
+
+# Prevent access to configuration and helper files
+<FilesMatch "^(config|db|auth|email_helper)\.php$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to SQL files
+<FilesMatch "\.(sql)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Prevent access to hidden files
+<FilesMatch "^\.">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Security headers
+<IfModule mod_headers.c>
+    Header set X-Frame-Options "DENY"
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+</IfModule>
+
+# Disable server signature
+ServerSignature Off
