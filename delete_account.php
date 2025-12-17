@@ -88,7 +88,7 @@ if (is_post()) {
                     set_flash('success', 'Your account has been permanently deleted. We\'re sorry to see you go!');
                     
                     // Redirect to landing page
-                    redirect('landing.php');
+                    redirect('landing.html');
                 } else {
                     throw new Exception('Failed to delete account.');
                 }

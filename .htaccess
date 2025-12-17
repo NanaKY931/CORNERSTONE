@@ -5,7 +5,13 @@
 </FilesMatch>
 
 # Allow access to entry point files only
-<FilesMatch "^(index|landing|signup|verify|dashboard|reports|inventory_admin|logout|delete_account)\.php$">
+<FilesMatch "^(index|signup|verify|dashboard|reports|inventory_admin|logout|delete_account)\.php$">
+    Order Allow,Deny
+    Allow from all
+</FilesMatch>
+
+# Allow access to HTML files (landing page)
+<FilesMatch "^(landing)\.html$">
     Order Allow,Deny
     Allow from all
 </FilesMatch>

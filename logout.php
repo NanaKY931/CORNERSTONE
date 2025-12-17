@@ -19,7 +19,7 @@ $redirect_to = get('redirect', 'login');
 
 // Redirect based on parameter
 if ($redirect_to === 'landing') {
-    redirect('landing.php');
+    redirect('landing.html');
 } else {
     redirect('index.php');
 }
