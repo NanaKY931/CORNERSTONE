@@ -20,7 +20,6 @@ if (Auth::isLoggedIn()) {
 
 $error = '';
 $success = '';
-$verificationCode = '';
 
 // Handle signup form submission
 if (is_post()) {
@@ -58,7 +57,7 @@ if (is_post()) {
     }
     // Check if email already exists
     elseif (Auth::checkEmailExists($email)) {
-        $error = 'Email already registered. Please <a href="index.php">login</a> instead.';
+        $error = 'Email already registered. Please <a href="login.php">login</a> instead.';
     }
     else {
         // All validations passed - create verification code
@@ -80,18 +79,18 @@ if (is_post()) {
         $sql = "INSERT INTO verification_codes (email, code, user_data, expires_at) 
                 VALUES (?, ?, ?, ?)";
         
-        $success = Database::execute($sql, [$email, $code, $userData, $expiresAt], 'ssss');
+        $dbSuccess = Database::execute($sql, [$email, $code, $userData, $expiresAt], 'ssss');
         
-        if ($success) {
-            // Send verification email (or display code in dev mode)
+        if ($dbSuccess) {
+            // Send verification email via Mercury
             $emailResult = EmailHelper::sendVerificationEmail($email, $code, $username);
             
             if ($emailResult['success']) {
-                $success = true;
-                $verificationCode = $emailResult['code'] ?? ''; // Only set in dev mode
-                
                 // Store email in session for verify page
                 $_SESSION['pending_verification_email'] = $email;
+                
+                // Redirect immediately to verification page
+                redirect('verify.php');
             } else {
                 $error = 'Failed to send verification email. Please try again.';
             }
@@ -164,56 +163,15 @@ if (is_post()) {
         <!-- Right Side - Signup Form -->
         <div class="login-form-container">
             <div class="login-form-content">
-                <?php if ($success && $verificationCode): ?>
-                    <!-- Success - Show verification code (dev mode) -->
-                    <h2>✅ Registration Successful!</h2>
-                    <p class="login-subtitle">Your verification code is:</p>
-                    
-                    <div class="alert alert-success" style="text-align: center; margin: 20px 0;">
-                        <div style="font-size: 32px; font-weight: bold; letter-spacing: 8px; font-family: 'Courier New', monospace; color: #1e3a8a;">
-                            <?php echo sanitize_output($verificationCode); ?>
-                        </div>
-                    </div>
-                    
-                    <div class="alert alert-info">
-                        <p><strong>Development Mode:</strong> In production, this code would be sent to your email.</p>
-                        <p>This code will expire in <strong>15 minutes</strong>.</p>
-                    </div>
-                    
-                    <a href="verify.php" class="btn btn-primary btn-block">
-                        Continue to Verification
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
-                    
-                <?php elseif ($success): ?>
-                    <!-- Success - Email sent (production mode) -->
-                    <h2>✅ Check Your Email</h2>
-                    <p class="login-subtitle">We've sent a verification code to your email address.</p>
-                    
-                    <div class="alert alert-info">
-                        <p>Please check your inbox and enter the 6-digit code to complete your registration.</p>
-                        <p>The code will expire in <strong>15 minutes</strong>.</p>
-                    </div>
-                    
-                    <a href="verify.php" class="btn btn-primary btn-block">
-                        Continue to Verification
-                        <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                            <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                    </a>
-                    
-                <?php else: ?>
-                    <!-- Signup Form -->
-                    <h2>Create Your Account</h2>
-                    <p class="login-subtitle">Start managing your construction inventory today</p>
+                <!-- Signup Form -->
+                <h2>Create Your Account</h2>
+                <p class="login-subtitle">Start managing your construction inventory today</p>
 
-                    <?php if ($error): ?>
-                        <div class="alert alert-error">
-                            <?php echo $error; ?>
-                        </div>
-                    <?php endif; ?>
+                <?php if ($error): ?>
+                    <div class="alert alert-error">
+                        <?php echo $error; ?>
+                    </div>
+                <?php endif; ?>
 
                     <form method="POST" action="signup.php" class="login-form">
                         <?php echo Auth::csrfField(); ?>
@@ -312,9 +270,8 @@ if (is_post()) {
 
                     <div class="login-demo-credentials">
                         <p class="demo-title">Already have an account?</p>
-                        <a href="index.php" class="btn btn-secondary btn-block">Sign In</a>
+                        <a href="login.php" class="btn btn-secondary btn-block">Sign In</a>
                     </div>
-                <?php endif; ?>
             </div>
         </div>
     </div>

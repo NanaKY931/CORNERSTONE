@@ -201,7 +201,7 @@ if (is_post()) {
                     <p class="demo-title">Didn't receive a code?</p>
                     <div class="demo-accounts" style="display: flex; flex-direction: column; gap: 0.5rem;">
                         <a href="signup.php" class="btn btn-secondary btn-block">Sign Up Again</a>
-                        <a href="index.php" style="text-align: center; color: #6b7280; font-size: 0.875rem;">Back to Login</a>
+                        <a href="login.php" style="text-align: center; color: #6b7280; font-size: 0.875rem;">Back to Login</a>
                     </div>
                 </div>
             </div>

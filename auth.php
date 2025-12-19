@@ -151,7 +151,7 @@ class Auth {
      * @param string $redirectUrl URL to redirect to if not logged in
      * @return void
      */
-    public static function requireLogin($redirectUrl = 'index.php') {
+    public static function requireLogin($redirectUrl = 'login.php') {
         if (!self::isLoggedIn()) {
             set_flash('error', 'Please log in to access this page.');
             redirect($redirectUrl);

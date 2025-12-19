@@ -21,6 +21,6 @@ $redirect_to = get('redirect', 'login');
 if ($redirect_to === 'landing') {
     redirect('landing.html');
 } else {
-    redirect('index.php');
+    redirect('login.php');
 }
 ?>

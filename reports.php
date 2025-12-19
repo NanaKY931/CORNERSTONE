@@ -156,6 +156,74 @@ if ($report_type === 'reorder') {
         $reorder_report_data = Database::fetchAll($sql);
     }
 }
+
+// Handle CSV Export
+if (get('export') === 'csv') {
+    $filename = '';
+    $csv_data = [];
+    
+    if ($report_type === 'cost') {
+        $filename = 'cost_report_' . date('Y-m-d') . '.csv';
+        $csv_data[] = ['Site', 'Material', 'Category', 'Quantity', 'Unit', 'Unit Cost', 'Total Value'];
+        
+        foreach ($cost_report_data as $row) {
+            $csv_data[] = [
+                $row['site_name'],
+                $row['material_name'],
+                $row['category'],
+                number_format($row['quantity'], 2),
+                $row['unit_of_measure'],
+                number_format($row['unit_cost'], 2),
+                number_format($row['total_value'], 2)
+            ];
+        }
+    } elseif ($report_type === 'waste') {
+        $filename = 'waste_report_' . date('Y-m-d') . '.csv';
+        $csv_data[] = ['Date', 'Site', 'Material', 'Expected Qty', 'Actual Qty', 'Variance', 'Variance %', 'Value Lost', 'Notes'];
+        
+        foreach ($waste_report_data as $row) {
+            $csv_data[] = [
+                $row['report_date'],
+                $row['site_name'],
+                $row['material_name'],
+                number_format($row['expected_quantity'], 2),
+                number_format($row['actual_quantity'], 2),
+                number_format($row['variance'], 2),
+                number_format($row['variance_percentage'], 2) . '%',
+                number_format(abs($row['variance_value']), 2),
+                $row['notes'] ?: 'N/A'
+            ];
+        }
+    } elseif ($report_type === 'reorder') {
+        $filename = 'reorder_report_' . date('Y-m-d') . '.csv';
+        $csv_data[] = ['Site', 'Material', 'Category', 'Current Qty', 'Reorder Threshold', 'Shortage', 'Reorder Cost'];
+        
+        foreach ($reorder_report_data as $row) {
+            $csv_data[] = [
+                $row['site_name'],
+                $row['material_name'],
+                $row['category'],
+                number_format($row['current_quantity'], 2),
+                number_format($row['reorder_threshold'], 0),
+                number_format($row['shortage'], 2),
+                number_format($row['reorder_cost'], 2)
+            ];
+        }
+    }
+    
+    // Output CSV
+    header('Content-Type: text/csv');
+    header('Content-Disposition: attachment; filename="' . $filename . '"');
+    header('Pragma: no-cache');
+    header('Expires: 0');
+    
+    $output = fopen('php://output', 'w');
+    foreach ($csv_data as $row) {
+        fputcsv($output, $row);
+    }
+    fclose($output);
+    exit;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -282,13 +350,13 @@ if ($report_type === 'reorder') {
                 <div class="section">
                     <div class="section-header">
                         <h2>Total Material Cost Report</h2>
-                        <button onclick="exportTableToCSV('cost_report.csv')" class="btn btn-secondary">
+                        <a href="?<?php echo http_build_query(array_merge($_GET, ['export' => 'csv'])); ?>" class="btn btn-secondary">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M8 2V10M8 10L5 7M8 10L11 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                 <path d="M2 12V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                             Export CSV
-                        </button>
+                        </a>
                     </div>
 
                     <!-- Summary Cards -->
@@ -365,13 +433,13 @@ if ($report_type === 'reorder') {
                 <div class="section">
                     <div class="section-header">
                         <h2>Waste & Variance Report (Shrinkage Audit)</h2>
-                        <button onclick="exportTableToCSV('waste_report.csv')" class="btn btn-secondary">
+                        <a href="?<?php echo http_build_query(array_merge($_GET, ['export' => 'csv'])); ?>" class="btn btn-secondary">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M8 2V10M8 10L5 7M8 10L11 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                 <path d="M2 12V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                             Export CSV
-                        </button>
+                        </a>
                     </div>
 
                     <!-- Summary Cards -->
@@ -432,13 +500,13 @@ if ($report_type === 'reorder') {
                 <div class="section">
                     <div class="section-header">
                         <h2>Predictive Reorder Report</h2>
-                        <button onclick="exportTableToCSV('reorder_report.csv')" class="btn btn-secondary">
+                        <a href="?<?php echo http_build_query(array_merge($_GET, ['export' => 'csv'])); ?>" class="btn btn-secondary">
                             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
                                 <path d="M8 2V10M8 10L5 7M8 10L11 7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                                 <path d="M2 12V13C2 13.5523 2.44772 14 3 14H13C13.5523 14 14 13.5523 14 13V12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                             </svg>
                             Export CSV
-                        </button>
+                        </a>
                     </div>
 
                     <div class="table-container">

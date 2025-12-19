@@ -239,6 +239,19 @@ if (get('success')) {
                 </svg>
                 Dashboard
             </a>
+            <a href="inventory_admin.php" class="nav-link active">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <rect x="3" y="5" width="14" height="12" rx="1" stroke="currentColor" stroke-width="2"/>
+                    <path d="M7 9H13M7 13H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                </svg>
+                Inventory
+            </a>
+            <a href="manage_sites.php" class="nav-link">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                    <path d="M10 3L3 8V17H7V12H13V17H17V8L10 3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                </svg>
+                Sites
+            </a>
             <a href="reports.php" class="nav-link">
                 <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path d="M4 16L8 10L12 14L16 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
@@ -246,13 +259,6 @@ if (get('success')) {
                     <circle cx="12" cy="14" r="1.5" fill="currentColor"/>
                 </svg>
                 Reports
-            </a>
-            <a href="inventory_admin.php" class="nav-link active">
-                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                    <rect x="3" y="5" width="14" height="12" rx="1" stroke="currentColor" stroke-width="2"/>
-                    <path d="M7 9H13M7 13H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                </svg>
-                Manage Inventory
             </a>
         </div>
     </nav>

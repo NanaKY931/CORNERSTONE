@@ -26,6 +26,7 @@ define('DB_CHARSET', 'utf8mb4');
 // SESSION CONFIGURATION
 // ============================================
 
+
 define('SESSION_NAME', 'cornerstone_session');
 define('SESSION_TIMEOUT', 3600); // 1 hour in seconds
 define('SESSION_REGENERATE_INTERVAL', 300); // Regenerate session ID every 5 minutes
@@ -111,17 +112,26 @@ define('ALLOWED_FILE_TYPES', ['jpg', 'jpeg', 'png', 'pdf']);
 // ============================================
 
 // Email mode: 'dev' = display code on screen, 'production' = send actual email
-define('EMAIL_MODE', 'dev');
+define('EMAIL_MODE', 'production');
 
-// SMTP Settings (for production mode)
-define('SMTP_HOST', 'smtp.gmail.com');
-define('SMTP_PORT', 587);
-define('SMTP_USER', ''); // Set in production
-define('SMTP_PASS', ''); // Set in production
+// Email provider: 'mercury' = local XAMPP mail, 'gmail' = Gmail SMTP
+define('EMAIL_PROVIDER', 'gmail'); // Change to 'mercury' to use local mail
 
-// From address
-define('FROM_EMAIL', 'noreply@cornerstone.com');
-define('FROM_NAME', 'Cornerstone Inventory');
+// Mercury SMTP Settings (XAMPP local mail server)
+define('MERCURY_HOST', 'localhost');
+define('MERCURY_PORT', 25);
+
+// Gmail SMTP Settings
+define('GMAIL_HOST', 'smtp.gmail.com');
+define('GMAIL_PORT', 587);
+define('GMAIL_USER', 'kkaid5437@gmail.com'); // Your Gmail address
+define('GMAIL_PASS', 'wvhdcerpkqtrwcdr'); // special password (for purpose of experiment; could change later maybe.)
+define('GMAIL_FROM_EMAIL', 'kkaid5437@gmail.com');
+define('GMAIL_FROM_NAME', 'Cornerstone Inventory');
+
+// From address (dynamically set based on provider)
+define('FROM_EMAIL', EMAIL_PROVIDER === 'gmail' ? GMAIL_FROM_EMAIL : 'noreply@localhost');
+define('FROM_NAME', EMAIL_PROVIDER === 'gmail' ? GMAIL_FROM_NAME : 'Cornerstone Inventory');
 
 // ============================================
 // VERIFICATION CODE SETTINGS

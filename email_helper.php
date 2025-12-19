@@ -20,25 +20,63 @@ class EmailHelper {
      * @return array ['success' => bool, 'code' => string (dev mode only), 'message' => string]
      */
     public static function sendVerificationEmail($email, $code, $username) {
-        // Development mode - return code for display
-        if (EMAIL_MODE === 'dev') {
+        $subject = 'Verify Your Cornerstone Account';
+        $message = self::getVerificationEmailTemplate($code, $username);
+        
+        // Choose email provider
+        if (EMAIL_PROVIDER === 'gmail') {
+            return self::sendViaGmail($email, $subject, $message);
+        } else {
+            return self::sendViaMercury($email, $subject, $message);
+        }
+    }
+    
+    /**
+     * Send email via Gmail SMTP
+     */
+    private static function sendViaGmail($email, $subject, $message) {
+        // Check if Gmail credentials are configured
+        if (empty(GMAIL_PASS)) {
             return [
-                'success' => true,
-                'code' => $code,
-                'message' => 'Development mode: Code generated successfully'
+                'success' => false,
+                'message' => 'Gmail App Password not configured. Please update config.php'
             ];
         }
         
-        // Production mode - send actual email
-        $subject = 'Verify Your Cornerstone Account';
-        $message = self::getVerificationEmailTemplate($code, $username);
+        try {
+            require_once __DIR__ . '/simple_smtp.php';
+            
+            $smtp = new SimpleSMTP(
+                GMAIL_HOST,
+                GMAIL_PORT,
+                GMAIL_USER,
+                GMAIL_PASS
+            );
+            
+            $smtp->send($email, $subject, $message, GMAIL_FROM_EMAIL, GMAIL_FROM_NAME);
+            
+            return [
+                'success' => true,
+                'message' => 'Email sent successfully via Gmail'
+            ];
+        } catch (Exception $e) {
+            return [
+                'success' => false,
+                'message' => 'Gmail SMTP error: ' . $e->getMessage()
+            ];
+        }
+    }
+    
+    /**
+     * Send email via Mercury (local mail server)
+     */
+    private static function sendViaMercury($email, $subject, $message) {
         $headers = self::getEmailHeaders();
-        
         $sent = mail($email, $subject, $message, $headers);
         
         return [
             'success' => $sent,
-            'message' => $sent ? 'Verification email sent successfully' : 'Failed to send email'
+            'message' => $sent ? 'Email sent via Mercury' : 'Failed to send via Mercury'
         ];
     }
     
